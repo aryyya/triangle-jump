@@ -1,5 +1,41 @@
 (ns triangle-jump.core
+  (:require [clojure.set :as set])
   (:gen-class))
+
+(def board
+  "The starting board state."
+  {1  {:pegged true :connections {4 2, 6 3}}
+   2  {:pegged true :connections {7 4, 9 5}}
+   3  {:pegged true :connections {8 5, 10 6}}
+   4  {:pegged true :connections {1 2, 6 5, 13 8, 11 7}}
+   5  {:pegged true :connections {12 8, 14 9}}
+   6  {:pegged true :connections {4 5, 13 9, 15 10, 1 3}}
+   7  {:pegged true :connections {2 4, 9 8}}
+   8  {:pegged true :connections {3 5, 10 9}}
+   9  {:pegged true :connections {2 5, 7 8}}
+   10 {:pegged true :connections {3 6, 8 9}}
+   11 {:pegged true :connections {4 7, 13 12}}
+   12 {:pegged true :connections {5 8, 14 13}}
+   13 {:pegged true :connections {11 12, 4 8, 6 9, 15 14}}
+   14 {:pegged true :connections {12 13, 5 9}}
+   15 {:pegged true :connections {13 14, 6 10}}})
+
+(defn tri*
+  "Generate an infinite sequence of triangle numbers."
+  ([] (tri* 0 1))
+  ([sum n]
+   (let [next-sum (+ sum n)]
+     (cons next-sum
+           (lazy-seq (tri* next-sum
+                           (inc n)))))))
+
+(def tri (tri*))
+
+(defn triangular?
+  "Check if a number is a triangle number."
+  [n]
+  (= n
+     (last(take-while #(<= % n) tri))))
 
 (defn -main
   [& args]
