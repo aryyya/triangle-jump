@@ -34,8 +34,22 @@
 (defn triangular?
   "Check if a number is a triangle number."
   [n]
-  (= n
-     (last(take-while #(<= % n) tri))))
+  (= n (last (take-while #(<= % n) tri))))
+
+(defn row-tri
+  "Get the triangle number at the end of a row."
+  [row]
+  (nth tri (dec row)))
+
+(defn row-num
+  "Get the row number the position belongs to."
+  [position]
+  (inc (count (take-while #(> position %) tri))))
+
+(defn connect
+  "Create a connection between two positions."
+  [board max-position position neighbour destination]
+  nil)
 
 (defn -main
   [& args]
