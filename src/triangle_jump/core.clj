@@ -49,7 +49,18 @@
 (defn connect
   "Create a connection between two positions."
   [board max-position position neighbour destination]
-  nil)
+  (if (<= destination max-position)
+    nil
+    board))
+
+(defn connect-right
+  [board max-position position])
+
+(defn connect-down-left
+  [board max-position position])
+
+(defn connect-down-right
+  [board max-position position])
 
 (defn -main
   [& args]
