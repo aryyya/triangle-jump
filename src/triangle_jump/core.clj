@@ -20,31 +20,31 @@
    14 {:pegged true :connections {12 13, 5 9}}
    15 {:pegged true :connections {13 14, 6 10}}})
 
-(defn tri*
+(defn triangle-numbers*
   "Generate an infinite sequence of triangle numbers."
-  ([] (tri* 0 1))
+  ([] (triangle-numbers* 0 1))
   ([sum n]
    (let [next-sum (+ sum n)]
      (cons next-sum
-           (lazy-seq (tri* next-sum
+           (lazy-seq (triangle-numbers* next-sum
                            (inc n)))))))
 
-(def tri (tri*))
+(def triangle-numbers (triangle-numbers*))
 
 (defn triangular?
   "Check if a number is a triangle number."
   [n]
-  (= n (last (take-while #(<= % n) tri))))
+  (= n (last (take-while #(<= % n) triangle-numbers))))
 
-(defn row-tri
+(defn row-triangle
   "Get the triangle number at the end of a row."
   [row]
-  (nth tri (dec row)))
+  (nth triangle-numbers (dec row)))
 
-(defn row-num
+(defn row-number
   "Get the row number the position belongs to."
   [position]
-  (inc (count (take-while #(> position %) tri))))
+  (inc (count (take-while #(> position %) triangle-numbers))))
 
 (defn connect
   "Create a connection between two positions."
