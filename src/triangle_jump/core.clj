@@ -64,4 +64,4 @@
 
 (defn -main
   [& args]
-  (println "Hello, Code!"))
+  (println "Hello, world!"))
