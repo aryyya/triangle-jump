@@ -27,7 +27,7 @@
    (let [next-sum (+ sum n)]
      (cons next-sum
            (lazy-seq (triangle-numbers* next-sum
-                           (inc n)))))))
+                                        (inc n)))))))
 
 (def triangle-numbers (triangle-numbers*))
 
